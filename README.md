@@ -26,4 +26,4 @@ MIT — free to use, modify, and share.
 Submissions welcome via GitHub Issues or pull requests. Fan art, theories, and quiz ideas encouraged!
 
 ## 📬 Contact
-Made by [TheMathematicalComet](https://github.com/ct-337)
+Made by [ct (@CT-337)](https://github.com/ct-337)
