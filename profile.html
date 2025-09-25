@@ -5,6 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>User Profile</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDitgt9lRoNwNfC8CFSql2uM7Vugkxg2aU",
+      authDomain: "stfandomcentral.firebaseapp.com",
+      projectId: "stfandomcentral",
+      appId: "1:499994120569:web:58efc5aaac0d7688835fa8"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        window.location.href = "login.html";
+      } else {
+        document.getElementById("userEmail").textContent = user.email;
+      }
+    });
+  </script>
 </head>
 <body>
   <header>
@@ -21,8 +40,8 @@
 
   <main>
     <section>
-      <h2>Your Profile</h2>
-      <p>Coming soon: your submissions, favorites, and quiz scores.</p>
+      <h2>Welcome</h2>
+      <p>Logged in as: <span id="userEmail">Loading...</span></p>
     </section>
   </main>
 
