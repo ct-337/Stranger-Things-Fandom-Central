@@ -26,6 +26,24 @@
         document.getElementById("userEmail").textContent = user.email;
       }
     });
+    firebase.auth().onAuthStateChanged((user) => {
+  if (!user) {
+    window.location.href = "login.html";
+  } else {
+    document.getElementById("userEmail").textContent = user.email;
+    if (user.photoURL) {
+      document.getElementById("profilePic").src = user.photoURL;
+    } else {
+      document.getElementById("profilePic").src = "default.png"; // fallback image
+    }
+  }
+});
+if (user.displayName) {
+  document.getElementById("displayName").textContent = user.displayName;
+} else {
+  document.getElementById("displayName").textContent = "Not set";
+}
+
   </script>
   <script src="script.js"></script>
 </head>
@@ -46,6 +64,19 @@
     <section>
       <h2>Welcome</h2>
       <p>Logged in as: <span id="userEmail">Loading...</span></p>
+      <p>Profile Picture:</p>
+<img id="profilePic" src="" alt="Profile Picture" width="100" />
+<p>Display Name: <span id="displayName">Loading...</span></p>
+<h3>Change Email</h3>
+<input type="email" id="newEmail" placeholder="New email" />
+<button onclick="changeEmail()">Update Email</button>
+    <h3>Reset Password</h3>
+<button onclick="resetPassword()">Send Reset Email</button>
+<h3>Log Out</h3>
+<h3>Delete Account</h3>
+<button onclick="deleteAccount()">Delete My Account</button>
+      <button onclick="logout()">Logout</button>
+      
     </section>
   </main>
 
