@@ -31,3 +31,47 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
       document.getElementById("authMessage").textContent = error.message;
     });
 });
+
+function logout() {
+  firebase.auth().signOut()
+    .then(() => {
+      window.location.href = "login.html";
+    })
+    .catch((error) => {
+      alert("Logout failed: " + error.message);
+    });
+}
+
+function changeEmail() {
+  const user = firebase.auth().currentUser;
+  const newEmail = document.getElementById("newEmail").value.trim();
+
+  user.updateEmail(newEmail)
+    .then(() => {
+      alert("Email updated!");
+    })
+    .catch((error) => {
+      alert("Error: " + error.message);
+    });
+}
+function resetPassword() {
+  const user = firebase.auth().currentUser;
+  firebase.auth().sendPasswordResetEmail(user.email)
+    .then(() => {
+      alert("Reset email sent!");
+    })
+    .catch((error) => {
+      alert("Error: " + error.message);
+    });
+}
+function deleteAccount() {
+  const user = firebase.auth().currentUser;
+  user.delete()
+    .then(() => {
+      alert("Account deleted.");
+      window.location.href = "index.html";
+    })
+    .catch((error) => {
+      alert("Error: " + error.message);
+    });
+}
